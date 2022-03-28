@@ -4,6 +4,9 @@ spring:
     url: jdbc:mysql://localhost:3306/opentutorials?useSSL=false&serverTimezone=UTC
     username : root
     password : 111111
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
 
 mybatis:
   mapper-locations: classpath:mapper/*.xml

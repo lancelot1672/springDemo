@@ -10,4 +10,5 @@ import java.util.List;
 @Repository
 public interface TestMapper {
     List<TopicVO> selectTopicsList();
+    TopicVO selectOneTopic(String title);
 }

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>WEB1</title>
+    <meta charset="utf-8">
+</head>
+<body>
+<h1><a href="/">WEB</a></h1>
+<ul >
+    <!--  글 목록 표현-->
+    <li th:each=" topic : ${topicList}">
+        <a th:href="@{/topic/{topicId}(topicId=${topic.title})}" th:text="${topic.title}"></a>
+    </li>
+</ul>
+<!-- create, update, delete 기능-->
+<!--${control}-->
+<!-- description -->
+<h2 th:text="${topic.title}"></h2>
+<p th:text="${topic.description}"></p>
+</body>
+</html>

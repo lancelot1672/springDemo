@@ -16,4 +16,7 @@
          select * from topic order by created desc
       ]]>
 </select>
+<select id="selectOneTopic" resultMap="topicResult">
+    select * from topic where title = #{title}
+</select>
 </mapper>

@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface TestService {
     public List<TopicVO> selectTopicsList();
+    public TopicVO selectOneTopic(String title);
 }

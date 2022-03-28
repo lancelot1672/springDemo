@@ -16,4 +16,7 @@ public class TestServiceImpl implements TestService{
     public List<TopicVO> selectTopicsList() {
         return testMapper.selectTopicsList();
     }
+
+    @Override
+    public TopicVO selectOneTopic(String title) {return testMapper.selectOneTopic(title);}
 }
