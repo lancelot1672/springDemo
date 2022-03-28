@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.topic.mapper.TestMapper">
+    <resultMap id="topicResult" type="topicVO">
+    <result property="id" column="id" />
+    <result property="title" column="title" />
+    <!-- mysql에서 TEXT 컬럼을 읽어오기 위해서 VARCHAR로 변환 -->
+    <result property="description" column="description" jdbcType="VARCHAR" javaType="java.lang.String" />
+    <!-- <result property="description" column="description" /> -->
+    <result property="created" column="created" />
+    <result property="author_id" column="author_id" />
+</resultMap>
+
+<select id="selectTopicsList" resultMap="topicResult">
+<![CDATA[
+         select * from topic order by created desc
+      ]]>
+</select>
+</mapper>
