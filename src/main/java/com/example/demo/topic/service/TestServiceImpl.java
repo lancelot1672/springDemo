@@ -3,6 +3,7 @@ package com.example.demo.topic.service;
 import com.example.demo.topic.mapper.TestMapper;
 import com.example.demo.topic.vo.TopicVO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -26,5 +27,10 @@ public class TestServiceImpl implements TestService{
     @Override
     public int deleteTopic(String title){
         return testMapper.deleteTopic(title);
+    }
+
+    @Override
+    public int updateTopic(String new_title, String description, String title){
+        return testMapper.updateTopic(new_title, description, title);
     }
 }

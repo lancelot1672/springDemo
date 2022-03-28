@@ -2,6 +2,7 @@ package com.example.demo.topic.controller;
 
 import com.example.demo.topic.service.TestService;
 import com.example.demo.topic.vo.TopicVO;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -53,15 +54,21 @@ public class TopicController {
         return modelAndView;
     }
     // update-process
-    @RequestMapping(value = "/update-process", method = RequestMethod.GET)
-    public ModelAndView update_Topic(@PathVariable String topicId){
+    @RequestMapping(value = "/update-process", method = RequestMethod.POST)
+    public ModelAndView update_Topic(HttpServletRequest request){
         ModelAndView modelAndView = new ModelAndView();
 
-        //DB delete
+        // 3. 수정해서 덮어쓸 것.
+        //DB update
+        String title = request.getParameter("title");
+        String new_title = request.getParameter("new_title");
+        String description = request.getParameter("description");
 
+        // 덮어쓰기
+        testService.updateTopic(new_title, description, title);
 
         // home redirect
-        modelAndView.setViewName("redirect:/");
+        modelAndView.setViewName("redirect:/topic/" + new_title);
         return modelAndView;
     }
     // update
@@ -69,11 +76,15 @@ public class TopicController {
     public ModelAndView updateTopic(@PathVariable String topicId){
         ModelAndView modelAndView = new ModelAndView();
 
-        //update 화면
+        // 1. 기존의 글 내용을 가져올 것.
+        // 해당 topic에 대한 내용
+        TopicVO topic = testService.selectOneTopic(topicId);
 
+        // 2. 기존의 글 내용을 표시 해줄것.
+        modelAndView.addObject("topic", topic);
+        modelAndView.setViewName("update");
 
-        // home redirect
-        modelAndView.setViewName("redirect:/");
+        // 3. 수정해서 덮어쓸 것. -> /topic/update-process
         return modelAndView;
     }
     //@PathVariable 을 이용한 경로 변수

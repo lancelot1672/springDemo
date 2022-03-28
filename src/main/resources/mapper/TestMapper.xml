@@ -26,5 +26,7 @@
     <delete id="deleteTopic">
         delete FROM topic where title= #{title}
     </delete>
-
+    <update id="updateTopic">
+        update topic set title = #{new_title}, description = #{description} where title= #{title}
+    </update>
 </mapper>
