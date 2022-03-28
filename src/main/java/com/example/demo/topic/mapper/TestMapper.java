@@ -10,5 +10,7 @@ import java.util.List;
 @Repository
 public interface TestMapper {
     List<TopicVO> selectTopicsList();
-    TopicVO selectOneTopic(String title);
+    TopicVO selectOneTopic(String title);   // Topic 한개 가져오기
+    int insertTopic(TopicVO topicVO);   // insert Topic
+    int deleteTopic(String title);  // Topic 삭제
 }

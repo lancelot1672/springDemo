@@ -19,4 +19,12 @@ public class TestServiceImpl implements TestService{
 
     @Override
     public TopicVO selectOneTopic(String title) {return testMapper.selectOneTopic(title);}
+
+    @Override
+    public int insertTopic(TopicVO topicVO) {return testMapper.insertTopic(topicVO);};
+
+    @Override
+    public int deleteTopic(String title){
+        return testMapper.deleteTopic(title);
+    }
 }

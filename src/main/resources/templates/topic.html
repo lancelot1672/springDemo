@@ -3,19 +3,57 @@
 <head>
     <title>WEB1</title>
     <meta charset="utf-8">
+    <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+    <script type="text/javascript">
+        function fn_create(){
+            var html= `
+             <form action="/topic/create-process" method="post">
+            <p><input type="text" name="title" placeholder="title" style='width:1000px;'></p>
+            <p>
+              <textarea name="description" placeholder="description" style='width:1000px; height:500px; resize:none;'></textarea>
+            </p>
+            <p>
+              <input type="submit">
+            </p>
+            </form>
+            `;
+            $('#topic').html(html);
+        }
+        function fn_update(topicId){
+            var topicId = topicId;
+            console.log(topicId);
+
+            var html = `
+            <form action="/topic/update_process" method="post">
+            <input type="hidden" name="title" value="${title}">
+            <p><input type="text" name="new_title" placeholder="title" value="${title}" style='width:1000px;'></p>
+            <p>
+              <textarea name="description" placeholder="description" style='width:1000px; height:500px; resize:none;'>${topic[0].description}</textarea>
+            </p>
+            <p>
+              <input type="submit">
+            </p>
+          </form>
+          `;
+
+        }
+    </script>
 </head>
 <body>
 <h1><a href="/">WEB</a></h1>
 <ul >
     <!--  글 목록 표현-->
-    <li th:each=" topic : ${topicList}">
-        <a th:href="@{/topic/{topicId}(topicId=${topic.title})}" th:text="${topic.title}"></a>
+    <li th:each=" topics : ${topicList}">
+        <a th:href="@{/topic/{topicId}(topicId=${topics.title})}" th:text="${topics.title}"></a>
     </li>
 </ul>
 <!-- create, update, delete 기능-->
-<!--${control}-->
+<a onclick="fn_create()">create</a> | <a th:href="@{/topic/update/{topicId}(topicId=${topic.title})}">update</a> | <a th:href="@{/topic/delete/{topicId}(topicId=${topic.title})}">delete</a>
 <!-- description -->
-<h2 th:text="${topic.title}"></h2>
-<p th:text="${topic.description}"></p>
+<div id="topic">
+    <h2 th:text="${topic.title}"></h2>
+    <p th:text="${topic.description}"></p>
+</div>
+
 </body>
 </html>
